@@ -1,0 +1,57 @@
+body{
+  width:768px;
+  margin: auto;
+}
+
+.container{
+  width: 100%;
+}
+
+
+#headerBar{
+  width:100%;
+  background-color: #6600cc;
+  height: 200px;
+  text-align: center;
+  margin: 0px;
+  margin-top: 10px;
+  border-radius: 30px;
+  position: relative;
+}
+
+#nameContainer{
+  width: 82%;
+  margin: auto;
+  position: absolute;
+  text-align: center;
+  background: black;
+  border-radius: 30px;
+  top: 30px;
+  left:65px;
+}
+
+#ArithmetricksName{
+  font-family: sans-serif;
+  font-size: 80px;
+  font-weight: bold;
+  color:white;
+}
+
+
+.forms{
+  font-family: sans-serif;
+  color: #6600cc;
+}
+
+#loginContainer{
+  padding-top: 110px;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#spacer{
+  width: 3px;
+  background-color: #6600cc;
+  height: 150px;
+}
