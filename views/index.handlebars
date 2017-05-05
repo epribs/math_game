@@ -1,0 +1,25 @@
+<h1>Party Planner </h1>
+
+ 
+<h3> {{this.name}} parties</h3>
+
+<ul>
+  {{#each parties}}
+  	<li>
+  	   <p>Party ID: {{this.id}}</p>
+       <p>Party Name: {{this.party_name}}</p>
+			 <p>Party Type: {{this.party_type}}</p>
+			 <p>Party Cost: {{this.party_cost}}</p>
+			 <p>Party Client: {{this.client_id}}</p>
+  	</li>
+  {{/each}}
+</ul>
+
+<!--
+<form action="/" method="POST">
+	<textarea type="text" name="event"></textarea>
+
+	<button type="submit">Submit</button>
+</form>
+-->
+
