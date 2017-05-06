@@ -1,0 +1,141 @@
+html, body{
+  height: 100%;
+}
+
+body{
+  width:768px;
+  margin: auto;
+  background-color: #f8e9d3;
+}
+
+.container{
+  width: 100%;
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+
+
+#headerBar{
+  width:100%;
+  /*background-color: #633593;*/
+  height: 200px;
+  text-align: center;
+  margin: 0px;
+  margin-top: 10px;
+  border-radius: 0px 0px 0px 0px;
+  position: relative;
+  background: -webkit-radial-gradient(rgba(0,0,110,1),rgba(67,0,133,1));
+  background: -moz-radial-gradient(rgba(0,0,110,1),rgba(67,0,133,1));
+  background: radial-gradient(rgba(0,0,110,1), rgba(67,0,133,1));
+}
+
+#nameContainer{
+  width: 51%;
+  position: absolute;
+  text-align: center;
+  /*background: black;*/
+  border-radius: 100%;
+  top: 32px;
+  left:185px;
+  /*opacity: 0.9;*/
+  border-top:solid 2px #ca8220;
+  border-bottom: solid 1px #d8c7eb;
+  transform: rotate(-10deg);
+}
+
+#ArithmetricksName{
+  margin: 35px 0px 0px 0px;
+  padding: 0px 0px 47px 0px;
+  font-family: sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color:#ca8220;
+}
+
+/*======================fix for the sticty footer===================*/
+.container:after{
+  content:"";
+  display: block;
+}
+
+.siteFooter, .container:after {
+  height: 100px;
+}
+
+.siteFooter{
+  background-color: #ca8220;
+}
+
+/*======================HERE IS THE CSS FOR THE WELCOME HTML===================*/
+
+.forms{
+  font-family: sans-serif;
+  color: #6600cc;
+}
+
+#loginContainer{
+  padding-top: 110px;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#spacer{
+  width: 3px;
+  background-color: #6600cc;
+  height: 150px;
+}
+
+
+
+/*======================HERE IS THE CSS FOR THE  GAME HTML===================*/
+
+
+#timerContainer {
+  width: 130px;
+  height: 130px;
+  background-color: black;
+  border:solid 10px white;
+  border-radius: 100%;
+  color: white;
+  font-family: sans-serif;
+  font-size: 20px;
+  position:absolute;
+  top: 100px;
+  left: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+#problemContainer{
+  margin-top: 100px;
+  padding: 0px 0px 0px 0px;
+  text-align: center;
+}
+
+
+#operatorBox {
+  display: inline-block;
+}
+
+#secondNumberBox{
+  display: inline-block;
+}
+
+.problemElement{
+  font-family: sans-serif;
+  font-size:90px;
+  margin: 10px 0px 10px 0px;
+}
+
+#problemAnswer {
+  height: 50px;
+  font-size: 50px;
+}
+
+#gameZoneContainer{
+  display: flex;
+  justify-content: space-around;
+}
