@@ -1,8 +1,9 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var classroom = sequelize.define("classroom", {
-    id:DataTypes.Integer,
+  var Classroom = sequelize.define("Classroom", {
+     // timestamps: true,
+    //id:DataTypes.INTEGER,
     classnumber:{ 
       type:DataTypes.INTEGER,
       validate:{
@@ -12,30 +13,39 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     grade:{ 
-      type:DataTypes.Integer,
+      type:DataTypes.INTEGER,
       validate:{
         isNumeric:true       
       }
     }
   },{
+
+  // disable the modification of tablenames; By default, sequelize will automatically
+  // transform all passed model names (first parameter of define) into plural.
+  // if you don't want that, set the following
+  freezeTableName: true,
+
+  },
+ 
+  {
     classMethods: {
       associate: function(models) {
-      // A teacher (foreignKey) is required or a class cannot exist
-      classroom.belongsTo(models.teacher, {
+      // A classroom has one teacher
+      Classroom.belongsTo(models.Teacher, {
       foreignKey: {
-      allowNull: false
+      //allowNull: false
       }
     });
     
-     // A classroom can have many students
-      classroom.hasMany(models.student, {
+     // A classroom has many students
+      Classroom.hasMany(models.Student, {
       foreignKey: {
-      allowNull: false
+      //allowNull: false
       }
     });
 
-  // A teacher (foreignKey) is required or a class cannot exist
-      classroom.hasMany(models.test, {
+  // A classroom has many tests
+      Classroom.hasMany(models.Test, {
       foreignKey: {
       //allowNull: false
       }
@@ -44,5 +54,5 @@ module.exports = function(sequelize, DataTypes) {
     }
  }
  );
-return classroom;
+return Classroom;
 };

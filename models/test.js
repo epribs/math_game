@@ -1,10 +1,11 @@
 "use strict";
 //Add foreign key student_id and classroom_id
 module.exports = function(sequelize, DataTypes) {
-  var test = sequelize.define("test", {
-    id:DataTypes.Integer,
+  var Test = sequelize.define("Test", {
+    //id:DataTypes.Integer,
+     // timestamps: true,
     name:{ 
-      type:DataTypes.String,
+      type:DataTypes.STRING,
       validate:{
         isAlpha:true,
         isNumeric:true,
@@ -13,13 +14,13 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
      totalQuestions:{ 
-      type:DataTypes.Integer,
+      type:DataTypes.INTEGER,
       validate:{
         isNumeric:true       
       }
     },
      correctQuestions:{ 
-      type:DataTypes.Integer,
+      type:DataTypes.INTEGER,
       validate:{
         isNumeric:true       
       }
@@ -30,17 +31,23 @@ module.exports = function(sequelize, DataTypes) {
         isFloat:true       
       }
     }
+  },{
+
+  // disable the modification of tablenames; By default, sequelize will automatically
+  // transform all passed model names (first parameter of define) into plural.
+  // if you don't want that, set the following
+  freezeTableName: true,
+
   },
       {
     classMethods: {
     associate: function(models) {
-      // Associating Author with Posts
-      // When an Author is deleted, also delete any associated Posts
-      test.belongsTo(models.student, {
+    //A test report is associates with one student
+      Test.belongsTo(models.Student, {
         //onDelete: "cascade"
       });
-    //test has one classroom
-      test.belongsTo(models.classroom, {
+    //A test report is associated to one classroom
+      Test.belongsTo(models.Classroom, {
         //onDelete: "cascade"
       });
     }
@@ -48,5 +55,5 @@ module.exports = function(sequelize, DataTypes) {
    }
  );
 
-  return test;
+  return Test;
 };
