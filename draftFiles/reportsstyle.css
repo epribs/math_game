@@ -1,14 +1,22 @@
-button.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
+button.accordion
+{
+    font-size: 25px;
+    font-weight: bold;
+
     width: 100%;
+    height: 100px;
+    padding: 18px;
+
+    cursor: pointer;
+    transition: .4s;
     text-align: left;
+
+    color: #d8c7eb;
     border: none;
     outline: none;
-    transition: 0.4s;
+    background-color: #eee;
 }
+
 
 button.accordion.active, button.accordion:hover {
     background-color: #ddd;
@@ -19,3 +27,9 @@ div.panel {
     background-color: white;
     display: none;
 }
+
+#first{background-color:#A83331 }
+
+#second{background-color:#CA8220 }
+
+#third{background-color:#400085}
