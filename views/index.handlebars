@@ -1,25 +1,43 @@
-<h1>Party Planner </h1>
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">Teachers</a></li>
+            <li role="presentation"><a href="#">Students</a></li>
+            <li role="presentation"><a href="#">Reports</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Admin Tool</h3>
+      </div>
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>Register Teacher</h4>
+        <form class="create-form" action="/" method="POST">
+            <div class="form-group">
+                <input type="text" id="teacher_name" name="name" placeholder="full name">
+            </div>
+             <div class="form-group">
+                <input type="email" id="teacher_uname" name="username"placeholder="username">
+            </div>
+             <div class="form-group">
+                <input type="password" id="teacher_pwd" name="password"placeholder="password">
+            </div>
+            <button type="submit">Add Teacher</button>
+         </form>
+        </div>
 
- 
-<h3> {{this.name}} parties</h3>
-
-<ul>
-  {{#each parties}}
-  	<li>
-  	   <p>Party ID: {{this.id}}</p>
-       <p>Party Name: {{this.party_name}}</p>
-			 <p>Party Type: {{this.party_type}}</p>
-			 <p>Party Cost: {{this.party_cost}}</p>
-			 <p>Party Client: {{this.client_id}}</p>
-  	</li>
-  {{/each}}
-</ul>
-
-<!--
-<form action="/" method="POST">
-	<textarea type="text" name="event"></textarea>
-
-	<button type="submit">Submit</button>
-</form>
--->
-
+      <div class="col-lg-6">
+          <h4>Register Student</h4>
+        <form class="create-form" action="/" method="POST">
+            <div class="form-group">
+                <input type="text" id="student_name" name="name" placeholder="full name">
+            </div>
+             <div class="form-group">
+                <input type="email" id="student_uname" name="username"placeholder="username">
+            </div>
+             <div class="form-group">
+                <input type="password" id="student_pwd" name="password"placeholder="password">
+            </div>
+            <button type="submit">Add Student</button>
+         </form>
+        </div>
