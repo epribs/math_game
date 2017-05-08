@@ -7,7 +7,7 @@ body{
     width: 768px;
     margin: auto;
 
-    background-color: #f8e9d3;
+    background-color: #8080ff;
 }
 
 .container{
@@ -20,47 +20,42 @@ body{
     position: relative;
 
     width: 100%;
-    /*background-color: #633593;*/
+    background-color: #B20000;
     height: 200px;
-    margin: 0;
     margin-top: 10px;
-
-    text-align: center;
-
-    border-radius: 0 0 0 0;
-    background: -webkit-radial-gradient(rgba(0,0,110,1),rgba(67,0,133,1));
-    background:    -moz-radial-gradient(rgba(0,0,110,1),rgba(67,0,133,1));
-    background:         radial-gradient(rgba(0,0,110,1), rgba(67,0,133,1));
 }
 
 #nameContainer{
     position: absolute;
     top: 32px;
-    left: 185px;
+    left: 21px;
 
-    width: 51%;
+    width: 75%;
 
-    transform: rotate(-10deg);
-    text-align: center;
-    /*opacity: 0.9;*/
-
-    border-top: solid 2px #ca8220;
-    border-bottom: solid 1px #d8c7eb;
-    /*background: black;*/
     border-radius: 100%;
 }
 
 #ArithmetricksName{
-    font-family: sans-serif;
-    font-size: 55px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 75px;
     font-weight: bold;
+    text-shadow: 0px 3px 0px #b2a98f,
+    0px 14px 10px rgba(0,0,0,0.15),
+    0px 24px 2px rgba(0,0,0,0.1),
+    0px 34px 30px rgba(0,0,0,0.1);
 
-    margin: 35px 0 0 0;
+    margin: 15px 0px 0px 0px;
     padding: 0 0 47px 0;
 
-    color: #ca8220;
+    color: white;
 }
 
+
+#magician{
+  position:absolute;
+  top:-15px;
+  left:600px;
+}
 /*======================fix for the sticty footer===================*/
 .container:after{
     display: block;
@@ -74,7 +69,7 @@ body{
 }
 
 .siteFooter{
-    background-color: #ca8220;
+    background-color: #ffbf00;
 }
 
 /*======================HERE IS THE CSS FOR THE WELCOME HTML===================*/
@@ -108,8 +103,8 @@ body{
     font-size: 20px;
 
     position: absolute;
-    top: 100px;
-    left: 300px;
+    top: 150px;
+    left: 410px;
 
     display: flex;
 
@@ -117,7 +112,7 @@ body{
     height: 130px;
 
     color: white;
-    border: solid 10px white;
+    border: solid 10px #8080ff;
     border-radius: 100%;
     background-color: black;
 
@@ -126,24 +121,31 @@ body{
 }
 
 #gameZoneContainer{
-    display: flex;
+    min-height: 100%;
+    margin-top: -5px;
+    padding-bottom: 0px;
 
-    justify-content: space-around;
+    display: flex;
+    justify-content: space-between;
 }
 
 #problemContainer{
-    width: 50%;
+    width: 49%;
     margin-top: 20px;
     padding: 0 0 0 0;
 
     text-align: center;
+
+    color: white;
+    background-color: blue;
 }
+
 
 .problemElement{
     font-family: sans-serif;
     font-size: 90px;
 
-    margin: 10px 0 10px 0;
+    margin: 30px 0px 0px 0px;
 }
 
 #operatorBox{
@@ -158,19 +160,20 @@ body{
     font-size: 50px;
 
     height: 50px;
+    width: 160px;
 }
 
 .progressPanel{
     font-family: sans-serif;
 
-    width: 50%;
+    width: 49%;
     margin-top: 20px;
     padding: 0 0 0 0;
 
     text-align: center;
 
     color: white;
-    background-color: #a83331;
+    background-color: #006400;
 }
 
 .progressBar{
@@ -187,4 +190,72 @@ body{
     margin: 1px 0 0 10px;
 
     background-color: blue;
+}
+
+/*========== ///MASK STYLING /// ================================*/
+
+#mask{
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+
+    display: block;
+    overflow: auto;
+
+    width: 100% ;
+    min-height: 100%;
+
+    background-color: #8080ff;
+}
+
+#module{
+    width: 768px;
+    margin: auto;
+}
+
+#roundButtonContainer {
+    display: flex;
+
+    width: 250px;
+    height: 250px;
+    margin: auto;
+    margin-top: 70px;
+    margin-bottom: 70px;
+
+    border: solid red 10px;
+    border-radius: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
+
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+#startlabelBox:hover{
+  background-color:#cc0000;
+}
+
+#roundButtonContainer:active {
+  background-color: #990000;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#startlabelBox {
+    font-family: sans-serif;
+
+    display: flex;
+
+    width: 225px;
+    height: 225px;
+    padding: 5px;
+
+    color: white;
+    border: solid #999 1px;
+    border-radius: 100%;
+    background-color: red;
+
+    justify-content: center;
+    align-items: center;
 }
