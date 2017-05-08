@@ -1,0 +1,2 @@
+CREATE DATABASE mathgame;
+USE mathgame;

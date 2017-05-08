@@ -1,0 +1,111 @@
+{
+	"variables": [],
+	"info": {
+		"name": "student_crud",
+		"_postman_id": "d0754664-998f-b738-48a8-0b5f639efdda",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Student",
+			"request": {
+				"url": "http://localhost:3000/admin/api/students",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Ved Iyer\",\n\"username\":\"ved123\",\n\"password\":\"tester123\",\n\"role\":\"student\",\n\"ClassroomId\":null\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Student",
+			"request": {
+				"url": "http://localhost:3000/admin/api/students/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student",
+			"request": {
+				"url": "http://localhost:3000/admin/api/students/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"New Name\",\n\"username\":\"newUsername\",\n\"password\":\"newPassword\",\n\"role\":\"student\",\n\"ClassroomId\":1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all students",
+			"request": {
+				"url": "http://localhost:3000/admin/api/students",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"newNAME\",\n\"username\":\"newUSERNAME\",\n\"password\":\"newPASSWORD\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get student by id",
+			"request": {
+				"url": "http://localhost:3000/admin/api/students/2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"newNAME\",\n\"username\":\"newUSERNAME\",\n\"password\":\"newPASSWORD\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
