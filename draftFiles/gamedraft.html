@@ -4,6 +4,7 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="reset.css">
 	<link rel="stylesheet" type="text/css" href="cssdraft.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,600,700" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -11,11 +12,16 @@
 <!-- ========== ///// THE PURPLE HEADER OF THE PAGE ///// ============ -->
 
 	<div id=headerBar>
-			<div id="timerContainer">
-				<h1 id="timer">
-				0:25
-				</h1>
-			</div>
+		<div id="nameContainer">
+				<h1 id="ArithmetricksName">	Arithme-tricks</h1>
+				<img src="magicianSmall.png" alt="Magician Child" id="magician">
+		</div>
+
+		<div id="timerContainer">
+			<h1 id="timer">
+				1:00
+			</h1>
+		</div>
 	</div>
 
 <!-- =============== // ///// THE GAME ZONE ///// //================= -->
@@ -45,7 +51,7 @@
 	<!-- /// RIGHT SIDE OF THE ZONE ///// -->
 <div class="progressPanel">
 	<h1>Problem Solved</h1>
-	<h1>9</h1>
+	<h1 id="progressNumber">9</h1>
 
 	<div class="progressBarContainer">
 		<h2>You</h2>
@@ -56,7 +62,7 @@
 	</div>
 
 	<h1>High Score</h1>
-	<h1>1073</h1>
+	<h1>1073</h1> <!-- Highscore will come with handlebars -->
 
 </div> <!-- END OF PROGRESS PANEL -->
 
@@ -67,5 +73,99 @@
 <p>Aritmetirks</p>
 </footer>
 
+<!-- MASK SECTION TO INICIATE THE GAME -->
+
+<div id="mask">
+	<div id="module">
+			<div id=headerBar>
+		 			<div id="nameContainer">
+		 				<h1 id="ArithmetricksName">	Arithme-tricks</h1>
+						<img src="magicianSmall.png" alt="Magician Child" id="magician">
+		 			</div>
+			</div>
+
+			<div id="roundButtonContainer">
+				<div id="startlabelBox">
+					<h1>START!</h1>
+				</div>
+			</div>
+
+			<footer class="siteFooter">
+				<p>Aritmetirks</p>
+			</footer>
+	</div>
+</div>
+
+
 </body>
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+// ///////////// VARIABLES ///////////////////////
+var firstNumber = 0;
+var secondNumber = 0;
+var operand = "+"
+
+var problemId = 0;
+
+var secondsLeft = 59;
+
+// ////////////  FUNCTIONS ///////////////////////
+// ==> FUNCTIONS FOR THE START BUTTON EVENT
+function hideMask(){
+	$("#mask").css("display", "none");
+}
+
+function displayProblem(){
+	firstNumber = Math.floor(Math.random()*11);
+	secondNumber = Math.floor(Math.random()*11);
+	$("#firstNumber").html(firstNumber);
+	$("#secondNumber").html(secondNumber);
+	problemId ++;
+	console.log("check:" + problemId);
+}
+
+// == function count 1 minute
+function timerUp(){
+	setTimeout(gameOver,60*1000);
+}
+
+function gameOver(){
+	$("body").html("GAME OVER");
+	console.log("game over");
+}
+
+var countDown = setInterval(displayCountdown, 1000);
+
+function displayCountdown(){
+	secondsLeft --;
+	if(secondsLeft > 9){
+		$("#timer").html("0:" + secondsLeft);
+	} else if(secondsLeft < 10 && secondsLeft > 0){
+			$("#timer").html("0:0" + secondsLeft);
+		} else {
+		stopCountdown();
+		}
+}
+
+ function stopCountdown(){
+	 clearInterval(countDown);
+ }
+
+
+// ==> FUNCTIONS FOR THE ENTER ANSWER EVENT
+function nextProblem(){
+	if(problemId < 10){
+		displayProblem();
+	} else {
+		gameOver();
+	}
+}
+
+
+hideMask();
+displayProblem();
+timerUp();
+
+
+</script>
 </html>
