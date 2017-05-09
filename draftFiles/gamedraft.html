@@ -16,12 +16,12 @@
 				<h1 id="ArithmetricksName">	Arithme-tricks</h1>
 				<img src="magicianSmall.png" alt="Magician Child" id="magician">
 		</div>
-	</div>
 
-	<div id="timerContainer">
-		<h1 id="timer">
-			0:25
-		</h1>
+		<div id="timerContainer">
+			<h1 id="timer">
+				1:00
+			</h1>
+		</div>
 	</div>
 
 <!-- =============== // ///// THE GAME ZONE ///// //================= -->
@@ -101,19 +101,70 @@
 <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script type="text/javascript">
 // ///////////// VARIABLES ///////////////////////
+var firstNumber = 0;
+var secondNumber = 0;
+var operand = "+"
 
+var problemId = 0;
+
+var secondsLeft = 59;
 
 // ////////////  FUNCTIONS ///////////////////////
-// ==>hide mask to display game
+// ==> FUNCTIONS FOR THE START BUTTON EVENT
 function hideMask(){
 	$("#mask").css("display", "none");
 }
 
-//== function display student info (name and highest score)
+function displayProblem(){
+	firstNumber = Math.floor(Math.random()*11);
+	secondNumber = Math.floor(Math.random()*11);
+	$("#firstNumber").html(firstNumber);
+	$("#secondNumber").html(secondNumber);
+	problemId ++;
+	console.log("check:" + problemId);
+}
+
+// == function count 1 minute
+function timerUp(){
+	setTimeout(gameOver,60*1000);
+}
+
+function gameOver(){
+	$("body").html("GAME OVER");
+	console.log("game over");
+}
+
+var countDown = setInterval(displayCountdown, 1000);
+
+function displayCountdown(){
+	secondsLeft --;
+	if(secondsLeft > 9){
+		$("#timer").html("0:" + secondsLeft);
+	} else if(secondsLeft < 10 && secondsLeft > 0){
+			$("#timer").html("0:0" + secondsLeft);
+		} else {
+		stopCountdown();
+		}
+}
+
+ function stopCountdown(){
+	 clearInterval(countDown);
+ }
 
 
+// ==> FUNCTIONS FOR THE ENTER ANSWER EVENT
+function nextProblem(){
+	if(problemId < 10){
+		displayProblem();
+	} else {
+		gameOver();
+	}
+}
 
 
+hideMask();
+displayProblem();
+timerUp();
 
 
 </script>
