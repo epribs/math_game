@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/styles.css" type="text/css" />
+	    <!--link rel="stylesheet" type="text/css" href="/css/cssdraft.css"-->  
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<title>Arithme-tricks</title>
+</head>
+    
+<body>
+     <!-- ========== ///// THE PURPLE HEADER OF THE PAGE ///// ============ -->
+	<div class="container">
+		<div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+                      
+	       {{#if isTeacher}}
+		       <li role="presentation" class="active"><a href="#">Home</a></li>
+			   <li role="presentation" class="active"><a href="#">Dashboard</a></li>
+		       <li role="presentation" class="active"><a href="/logout">Log Out</a></li>
+		   {{else if isStudent}}
+		       <li role="presentation" class="active"><a href="#">Home</a></li>
+			   <li role="presentation" class="active"><a href="#">Dashboard</a></li>
+               <li role="presentation" class="active"><a href="/logout">Log Out</a></li>
+		   {{else}}
+               
+	       {{/if}}
+            
+          </ul>
+        </nav>
+	   
+	 </div>
+ 
+	  {{#if success_msg}}
+		  <div class="alert alert-success">{{success_msg}}</div>
+		{{/if}}
+
+		{{#if error_msg}}
+			<div class="alert alert-danger">{{error_msg}}</div>
+		{{/if}}
+
+		{{#if error}}
+			<div class="alert alert-danger">{{error}}</div>
+		{{/if}}
+    
+
+	{{{ body }}}
+	
+<footer class="footer siteFooter">
+         <p>&copy; 2017 Aritmetirks Inc.</p>
+</footer>
+</div> <!-- /container -->
+</body>
+</html>
