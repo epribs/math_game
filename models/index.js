@@ -40,5 +40,9 @@ db.Classroom.hasMany(db.Test);
 //db.Student.belongsTo(db.Classroom,{foreignKey:'classid',targetKey:'id'});
 db.Student.hasMany(db.Test);
 db.Teacher.hasMany(db.Classroom);
+//db.Teacher.belongsTo(db.User);
+//db.Student.belongsTo(db.User);
+db.User.hasMany(db.Student);
+db.User.hasMany(db.Teacher);
 
 module.exports = db;

@@ -18,6 +18,24 @@ app.get("/admin", function(req, res) {
   res.render("index", { "view": "admin" });
 });
 
+//===============================================================
+//User Routes
+//===============================================================
+// get all teachers
+
+app.get("/admin/api/user", function(req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.User.findAll({}).then(function(dbUser) {
+      // We have access to the todos as an argument inside of the callback function
+      res.json(dbUser);
+    }).catch(function(err){
+      res.status(500);
+      res.json({"ERROR":err.stack});
+    });
+});
+
+
+
 // =============================================================
 // Teacher Routes
 // =============================================================
@@ -42,19 +60,23 @@ app.post("/admin/api/teachers", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //create teacher in db
-      db.Teacher.create({
-      username: req.body.username,
+      db.User.create({
+      username:req.body.username,
       password:req.body.password,
-      role:req.body.role,
-      name: req.body.name
-      }).then(function(dbTeacher) {
+      role:req.body.role      
+      }).then(function(dbUser) {
         // We have access to the new user record as an argument inside of the callback function
-        res.json(dbTeacher);
+        //res.json(dbUser);
+        db.Teacher.create({
+        name: req.body.name,
+        UserId : dbUser.id
+        }).then(function(dbTeacher){
+         res.json(dbTeacher);
+        });
       }).catch(function(err){
         res.status(500);
         res.json({"ERROR":err.stack});
       });
-
       });
   });
    
@@ -230,30 +252,31 @@ app.get("/admin/api/students", function(req, res) {
 });
 
 // add a student
-
 app.post("/admin/api/students", function(req, res) {
-
-  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
-      //create student in db
-      db.Student.create({
-      username: req.body.username,
+      //create teacher in db
+      db.User.create({
+      username:req.body.username,
       password:req.body.password,
-      name: req.body.name,
-      role:req.body.role,
-      ClassroomId : req.body.ClassroomId
-      }).then(function(dbStudent) {
-      // We have access to the new user record as an argument inside of the callback function
-      res.json(dbStudent);
+      role:req.body.role      
+      }).then(function(dbUser) {
+        // We have access to the new user record as an argument inside of the callback function
+        //res.json(dbUser);
+        db.Student.create({
+        name: req.body.name,
+        UserId : dbUser.id
+        }).then(function(dbStudent){
+         res.json(dbStudent);
+        });
       }).catch(function(err){
-      res.status(500);
-      res.json({"ERROR":err.stack});
+        res.status(500);
+        res.json({"ERROR":err.stack});
       });
-
       });
-  }); 
-    
+  });
+   
 });
 
 //update a student
@@ -263,18 +286,24 @@ app.put("/admin/api/students/:id", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //update the student object
-      db.Student.update({
+      db.User.update({
       username: req.body.username,
       password:req.body.password,
-      name: req.body.name,
-      role:req.body.role,
-      ClassroomId : req.body.ClassroomId
+      role:req.body.role      
         }, {
         where: {
             id: req.params.id
         }
-        }).then(function(dbStudent) {
-        res.json(dbStudent);
+        }).then(function(dbUser) {
+        res.json(dbUser);
+        db.Student.update({
+           name: req.body.name,
+           UserId : dbUser.id
+        },{ where: {
+            id: req.params.id
+        }
+       }).then(function(dbStudent){
+          res.json(dbStudent);
         }).catch(function(err){
            res.status(500);
            res.json({"ERROR":err.stack});
@@ -283,6 +312,8 @@ app.put("/admin/api/students/:id", function(req, res) {
       });//bcrypt.hash ends
   }); //bcrypt.gensalt ends
   
+});
+
 });
 
 //delete a student
@@ -320,8 +351,6 @@ app.get("/admin/api/students/:id", function(req, res) {
       res.status(500);
       res.json({"ERROR":err.stack});
     });
-});
-
-
+});
 
 }
