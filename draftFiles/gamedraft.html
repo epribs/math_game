@@ -44,7 +44,7 @@
 	</div>
 
 	<form>
-		<input type="text" name="studentAnswer" class="" id="problemAnswer">
+		<input type="text" name="studentAnswer" class="" id="problemAnswer" autocomplete="off">
 	</form>
 </div> 	<!-- END OF PROBLEMCONTAINER -->
 
@@ -107,9 +107,15 @@ var operand = "+"
 
 var problemId = 0;
 
-var secondsLeft = 59;
+var secondsLeft = 60;
+
+var answer = 0;
+var corretcAnsw = 0;
+var wrongAnsw = 0;
 
 // ////////////  FUNCTIONS ///////////////////////
+$(document).ready(function(){
+
 // ==> FUNCTIONS FOR THE START BUTTON EVENT
 function hideMask(){
 	$("#mask").css("display", "none");
@@ -124,7 +130,6 @@ function displayProblem(){
 	console.log("check:" + problemId);
 }
 
-// == function count 1 minute
 function timerUp(){
 	setTimeout(gameOver,60*1000);
 }
@@ -140,7 +145,7 @@ function displayCountdown(){
 	secondsLeft --;
 	if(secondsLeft > 9){
 		$("#timer").html("0:" + secondsLeft);
-	} else if(secondsLeft < 10 && secondsLeft > 0){
+	} else if(secondsLeft < 10 && secondsLeft >= 0){
 			$("#timer").html("0:0" + secondsLeft);
 		} else {
 		stopCountdown();
@@ -151,8 +156,14 @@ function displayCountdown(){
 	 clearInterval(countDown);
  }
 
+ // EVERYTHING IS TRIGGER HERE!!!!!!
+$("#roundButtonContainer").click(function(){
+	hideMask();
+	displayProblem();
+	timerUp();
+})
 
-// ==> FUNCTIONS FOR THE ENTER ANSWER EVENT
+// ==> FUNCTIONS FOR THE ENTER KEY
 function nextProblem(){
 	if(problemId < 10){
 		displayProblem();
@@ -161,11 +172,29 @@ function nextProblem(){
 	}
 }
 
+function checkanswer(){
+	answer = $("#problemAnswer").val();
+	var result = firstNumber + secondNumber;
+	if (answer == result){
+		corretcAnsw ++;
+	}else {
+		wrongAnsw ++;
+	}
+	console.log("your rights: " + corretcAnsw);
+	console.log("your wrongs: " +  wrongAnsw);
+	console.log("Problems Left: " + (20 - problemId) );
+}
 
-hideMask();
-displayProblem();
-timerUp();
+$("#problemAnswer").on("keydown", function(keyPressed) {
+   if (keyPressed.keyCode == 13) {
+		 keyPressed.preventDefault();
+		 checkanswer();
+		 $("#problemAnswer").val("");
+		 nextProblem();
+   }
+  });
 
 
+}); // END OF GET READY FUNCTION
 </script>
 </html>
