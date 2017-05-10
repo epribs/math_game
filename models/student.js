@@ -3,33 +3,51 @@
 module.exports = function(sequelize, DataTypes) {
   var Student = sequelize.define("Student", 
   {
-    // timestamps: true,
-    //id:DataTypes.INTEGER,
     name:{ 
     type: DataTypes.STRING,
+    allowNull:false,
       validate:{
         len:[1,50],
-        notNull:true,
-        notEmpty:true,
-        isAlpha:true
+        notEmpty:true
       }
     },
     username:{ 
     type: DataTypes.STRING,
+    allowNull:false,
       validate:{
         len:[4,20],
-        notNull:true,
+        isAlphanumeric: true, 
         notEmpty:true,
-        isAlpha:true
+        isUnique: function(value, next) {
+          Student.find({
+            where: {username: value},
+            attributes: ['id']
+            }).then(function(user) {
+              if(user){
+              console.log('username already in use!'); 
+              return next('username already in use!');
+            }
+            console.log("username is available");
+            next();
+            }).catch(function(error){
+              console.log(error);
+              return next(error);
+            });              
+        }       
       }
     },
     password:{ 
     type: DataTypes.STRING,
+    allowNull:false,
       validate:{
-        len:[4,20],
-        notNull:true,
-        notEmpty:true,
-        isAlpha:true
+        notEmpty:true       
+      }
+    },
+    role:{ 
+    type: DataTypes.STRING,
+    allowNull: false,
+      validate:{
+         notEmpty:true       
       }
     }
   },{
@@ -39,40 +57,6 @@ module.exports = function(sequelize, DataTypes) {
   // if you don't want that, set the following
   freezeTableName: true,
 
-  },
-
-
-{
-    classMethods: {
-      associate: function(models) {
-   // A student has many tests
-      Student.hasMany(models.Test, {
-      foreignKey: {
-       //allowNull: false
-      }
-    });
-    // A student has one classroom
-      Student.belongsTo(models.Classroom, {
-      foreignKey: {
-      allowNull: false
-      }
-    });
-  // // A student has one teacher
-  //     Student.belongsTo(models.Teacher, {
-  //     foreignKey: {
-  //     allowNull: false
-  //     }
-  //     });
-    // // A student has one user
-    //   Student.belongsTo(models.User, {
-    //   foreignKey: {
-    //   allowNull: false
-    //   }
-    //   });
-    
-    
-    },
-  }
   }
   );
 

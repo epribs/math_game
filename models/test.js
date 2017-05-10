@@ -6,11 +6,9 @@ module.exports = function(sequelize, DataTypes) {
      // timestamps: true,
     name:{ 
       type:DataTypes.STRING,
+      allowNull:false,
       validate:{
-        isAlpha:true,
-        isNumeric:true,
-        notNull:true,
-        notEmpty:true
+         notEmpty:true
       }
     },
      totalQuestions:{ 
@@ -25,10 +23,10 @@ module.exports = function(sequelize, DataTypes) {
         isNumeric:true       
       }
     },
-     totalTimeTaken:{ 
-      type:DataTypes.FLOAT,
+     wrongQuestions:{ 
+      type:DataTypes.INTEGER,
       validate:{
-        isFloat:true       
+        isNumeric:true       
       }
     }
   },{
@@ -38,22 +36,7 @@ module.exports = function(sequelize, DataTypes) {
   // if you don't want that, set the following
   freezeTableName: true,
 
-  },
-      {
-    classMethods: {
-    associate: function(models) {
-    //A test report is associates with one student
-      Test.belongsTo(models.Student, {
-        //onDelete: "cascade"
-      });
-    //A test report is associated to one classroom
-      Test.belongsTo(models.Classroom, {
-        //onDelete: "cascade"
-      });
-    }
-   }
-   }
+  }
  );
-
-  return Test;
+ return Test;
 };

@@ -1,0 +1,108 @@
+{
+	"variables": [],
+	"info": {
+		"name": "classroom_crud",
+		"_postman_id": "b7a71d27-6ca2-3498-0978-f9192ae870b2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Delete Classroom",
+			"request": {
+				"url": "http://localhost:3000/admin/api/classrooms/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Classroom to populate TeacherId value",
+			"request": {
+				"url": "http://localhost:3000/admin/api/classrooms/7",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"classnumber\":101,\n\"grade\":1,\n\"TeacherId\":3\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all classrooms",
+			"request": {
+				"url": "http://localhost:3000/admin/api/classrooms",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"newNAME\",\n\"username\":\"newUSERNAME\",\n\"password\":\"newPASSWORD\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get classroom by id",
+			"request": {
+				"url": "http://localhost:3000/admin/api/classrooms/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"newNAME\",\n\"username\":\"newUSERNAME\",\n\"password\":\"newPASSWORD\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add Classroom With TeacherId As Null",
+			"request": {
+				"url": "http://localhost:3000/admin/api/classrooms",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"classnumber\":101,\n\"grade\":1,\n\"TeacherId\":null\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

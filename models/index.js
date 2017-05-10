@@ -33,4 +33,12 @@ Object.keys(db).forEach(function(modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// Define Associations
+//db.Classroom.belongsTo(db.Teacher,{foreignKey:'tid',targetKey:'id'});
+db.Classroom.hasMany(db.Student);
+db.Classroom.hasMany(db.Test);
+//db.Student.belongsTo(db.Classroom,{foreignKey:'classid',targetKey:'id'});
+db.Student.hasMany(db.Test);
+db.Teacher.hasMany(db.Classroom);
+
 module.exports = db;
