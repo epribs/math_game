@@ -113,6 +113,10 @@ var answer = 0;
 var corretcAnsw = 0;
 var wrongAnsw = 0;
 
+var finalResult = {
+	id: ""
+};
+
 // ////////////  FUNCTIONS ///////////////////////
 $(document).ready(function(){
 
@@ -137,6 +141,9 @@ function timerUp(){
 function gameOver(){
 	$("body").html("GAME OVER");
 	console.log("game over");
+	finalResult.rightAnswers = corretcAnsw;
+	finalResult.wrongAnswers = wrongAnsw;
+	console.log(finalResult);
 }
 
 var countDown = setInterval(displayCountdown, 1000);
