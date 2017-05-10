@@ -1,0 +1,111 @@
+{
+	"variables": [],
+	"info": {
+		"name": "teacher_crud",
+		"_postman_id": "47dcfc47-4a3d-18e2-4c6b-c1b630a5a9a6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Teacher",
+			"request": {
+				"url": "http://localhost:3000/admin/api/teachers",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Mrs John\",\n\"username\":\"john123\",\n\"password\":\"tester123\",\n\"role\":\"teacher\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Teacher",
+			"request": {
+				"url": "http://localhost:3000/admin/api/teachers/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update Teacher",
+			"request": {
+				"url": "http://localhost:3000/admin/api/teachers/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"New Name\",\n\"username\":\"newUsername\",\n\"password\":\"newPassword\",\n\"role\":\"student\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get all teachers",
+			"request": {
+				"url": "http://localhost:3000/admin/api/teachers",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"newNAME\",\n\"username\":\"newUSERNAME\",\n\"password\":\"newPASSWORD\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get teacher by id",
+			"request": {
+				"url": "http://localhost:3000/admin/api/teachers/2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"newNAME\",\n\"username\":\"newUSERNAME\",\n\"password\":\"newPASSWORD\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

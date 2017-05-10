@@ -1,55 +1,58 @@
-  "use strict";
+"use strict";
 
-  module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define("User", 
-    {
-      //timestamps: true,
-    // id:DataTypes.INTEGER,
-      username:{ 
-        type:DataTypes.STRING,
-        validate:{
-          isEmail:true
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define("User", 
+  {
+    username:{ 
+    type: DataTypes.STRING,
+    allowNull: false,
+      validate:{
+        len:[4,50],
+        isAlphanumeric: true, 
+        notEmpty:true,
+        isUnique: function(value, next) {
+                  User.find({
+                    where: {username: value},
+                    attributes: ['id']
+                   }).then(function(user) {
+                      if(user){
+                      console.log('username already in use!'); 
+                      return next('username already in use!');
+                    }
+                    console.log("username is available");
+                    next();
+                    }).catch(function(error){
+                      console.log(error);
+                      return next(error);
+                    });              
         }
-      },
-      password: {
-        type: DataTypes.STRING,
-        validate:{
-          len:[6,12],
-          notNull:true,
-          notEmpty:true
-        }
-      },
-    role:{
-        type: DataTypes.INTEGER,
-        validate:{
-          notNull:true,
-          notEmpty:true,
-          isNumeric:true
-        },
       }
-    },  {
+    },
+    password:{ 
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate:{
+         notEmpty:true       
+      }
+    },
+    role:{ 
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate:{
+         notEmpty:true       
+      }
+    }
+   
+   },{
 
   // disable the modification of tablenames; By default, sequelize will automatically
   // transform all passed model names (first parameter of define) into plural.
   // if you don't want that, set the following
   freezeTableName: true,
 
-  },
-    {
-      classMethods: {
-      associate: function(models) {
-        
-        // user is associated to one student
-        User.belongsTo(models.Student, {
-          onDelete: "cascade"
-        });
-      //user has one teacher record
-        User.belongsTo(models.Teacher, {
-          onDelete: "cascade"
-        });
-      }
-    }
-    }
+  }
   );
-    return User;
-  };
+
+  return User;
+};
+

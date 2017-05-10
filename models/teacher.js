@@ -3,12 +3,10 @@
 module.exports = function(sequelize, DataTypes) {
   var Teacher = sequelize.define("Teacher", 
   {
-    // timestamps: true,
-    //id:DataTypes.INTEGER,
-    name:{ 
+   name:{ 
     type: DataTypes.STRING,
     allowNull: false,
-      validate:{
+    validate:{
         len:[1,100],
         notEmpty:true
       }
@@ -17,7 +15,8 @@ module.exports = function(sequelize, DataTypes) {
     type: DataTypes.STRING,
     allowNull: false,
       validate:{
-        len:[1,50],
+        len:[4,50],
+        isAlphanumeric: true, 
         notEmpty:true,
         isUnique: function(value, next) {
                   Teacher.find({
@@ -25,26 +24,33 @@ module.exports = function(sequelize, DataTypes) {
                     attributes: ['id']
                    }).then(function(user) {
                       if(user){
-                      console.log('Email address already in use!'); 
-                      return next('Email address already in use!');
+                      console.log('username already in use!'); 
+                      return next('username already in use!');
                     }
-                    console.log("username can be added");
+                    console.log("username is available");
                     next();
-                      }).catch(function(error){
+                    }).catch(function(error){
                       console.log(error);
                       return next(error);
-                      });              
+                    });              
         }
       }
     },
     password:{ 
     type: DataTypes.STRING,
     allowNull: false,
-      validate:{
-        len:[1,50],
-        notEmpty:true       
+    validate:{
+         notEmpty:true       
+      }
+    },
+    role:{ 
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate:{
+         notEmpty:true       
       }
     }
+   
    },{
 
   // disable the modification of tablenames; By default, sequelize will automatically
@@ -52,36 +58,9 @@ module.exports = function(sequelize, DataTypes) {
   // if you don't want that, set the following
   freezeTableName: true,
 
-  },
-    {
-    classMethods: {
-    associate: function(models) {
-    
-      // Teacher has many classrooms
-      Teacher.hasMany(models.Classroom, {
-        //onDelete: "cascade"
-      });
-
-      // //Teacher has many students
-      // Teacher.hasMany(models.Student, {
-      //   //onDelete: "cascade"
-      // });
-     
-     // //Teacher has many tests
-     //  Teacher.hasMany(models.Test, {
-     //    //onDelete: "cascade"
-     //  });
-
-      // A teacher has one user
-      // Teacher.belongsTo(models.User, {
-      // foreignKey: {
-      // allowNull: false
-      // }
-      // });
-    }
-    }
   }
- );
+  );
+
   return Teacher;
 };
 
