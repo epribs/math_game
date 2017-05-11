@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="reset.css">
+	<!-- <link rel="stylesheet" type="text/css" href="reset.css"> -->
 	<link rel="stylesheet" type="text/css" href="cssdraft.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,600,700" rel="stylesheet">
 </head>
@@ -134,8 +134,18 @@ function displayProblem(){
 	console.log("check:" + problemId);
 }
 
+// function timerUp(){
+// 	setTimeout(gameOver,60*1000);
+// }
+
+var oneMinute;
+
 function timerUp(){
-	setTimeout(gameOver,60*1000);
+	oneMinute =setTimeout(gameOver, 60 * 1000);
+}
+
+function stopTimerUp(){
+	clearTimeout(oneMinute);
 }
 
 function gameOver(){
@@ -176,6 +186,7 @@ function nextProblem(){
 		displayProblem();
 	} else {
 		gameOver();
+		stopTimerUp();
 	}
 }
 
