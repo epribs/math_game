@@ -85,29 +85,40 @@ app.post("/admin/api/teachers", function(req, res) {
 //update a teacher
 
 app.put("/admin/api/teachers/:id", function(req, res) {
-    bcrypt.genSalt(10, function(err, salt) {
+  bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
-      //update teacher in db
-      db.Teacher.update({
+      //update the student object
+      db.User.update({
       username: req.body.username,
       password:req.body.password,
-      role:req.body.role,
-      name: req.body.name     
+      role:req.body.role      
         }, {
         where: {
             id: req.params.id
         }
-        }).then(function(dbTeacher) {
-        res.json(dbTeacher);
+        }).then(function(dbUser) {
+        res.json(dbUser);
+        var userid = dbUser.id;
+        db.Teacher.update({
+           name: req.body.name,
+           UserId : userid
+        },{ where: {
+            id: req.params.id
+        }
+       }).then(function(dbTeacher){
+          res.json(dbStudent);
         }).catch(function(err){
            res.status(500);
            res.json({"ERROR":err.stack});
         });
 
-      });
-  });
-});//put ends
+      });//bcrypt.hash ends
+  }); //bcrypt.gensalt ends
+  
+});
+
+});//update teacher ends
 
 //delete a teacher
 
@@ -145,7 +156,6 @@ app.get("/admin/api/teachers/:id", function(req, res) {
       res.json({"ERROR":err.stack});
     });
 });
-
 
 // =============================================================
 // classroom routes
@@ -234,6 +244,7 @@ app.delete("/admin/api/classrooms/:id", function(req, res) {
     });
 });
 
+
 // =============================================================
 // Student Routes
 // =============================================================
@@ -266,6 +277,7 @@ app.post("/admin/api/students", function(req, res) {
         //res.json(dbUser);
         db.Student.create({
         name: req.body.name,
+        ClassroomId : req.body.ClassroomId,
         UserId : dbUser.id
         }).then(function(dbStudent){
          res.json(dbStudent);
@@ -279,8 +291,8 @@ app.post("/admin/api/students", function(req, res) {
    
 });
 
-//update a student
 
+// update student
 app.put("/admin/api/students/:id", function(req, res) {
   bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
@@ -296,9 +308,11 @@ app.put("/admin/api/students/:id", function(req, res) {
         }
         }).then(function(dbUser) {
         res.json(dbUser);
+        var userid = dbUser.id;
         db.Student.update({
            name: req.body.name,
-           UserId : dbUser.id
+           ClassroomId : req.body.ClassroomId,
+           UserId : userid
         },{ where: {
             id: req.params.id
         }
@@ -314,7 +328,7 @@ app.put("/admin/api/students/:id", function(req, res) {
   
 });
 
-});
+});//update student ends
 
 //delete a student
 
@@ -337,7 +351,8 @@ app.delete("/admin/api/students/:id", function(req, res) {
 
   });
 
-//get a single student view
+  //
+  //get a single teacher view
 app.get("/admin/api/students/:id", function(req, res) {
     // findAll returns all entries for a table when used with no options
     db.Student.findById(req.params.id).then(function(dbStudent) {
@@ -351,6 +366,8 @@ app.get("/admin/api/students/:id", function(req, res) {
       res.status(500);
       res.json({"ERROR":err.stack});
     });
-});
+});
+
+
 
 }

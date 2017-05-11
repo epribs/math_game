@@ -35,14 +35,14 @@ db.Sequelize = Sequelize;
 
 // Define Associations
 //db.Classroom.belongsTo(db.Teacher,{foreignKey:'tid',targetKey:'id'});
-db.Classroom.hasMany(db.Student);
-db.Classroom.hasMany(db.Test);
+db.Classroom.hasMany(db.Student,{constraints: false});
+db.Classroom.hasMany(db.Test,{constraints: false});
 //db.Student.belongsTo(db.Classroom,{foreignKey:'classid',targetKey:'id'});
 db.Student.hasMany(db.Test);
 db.Teacher.hasMany(db.Classroom);
 //db.Teacher.belongsTo(db.User);
 //db.Student.belongsTo(db.User);
-db.User.hasMany(db.Student);
-db.User.hasMany(db.Teacher);
+db.User.hasMany(db.Student,{onDelete:'CASCADE',hooks:true});
+db.User.hasMany(db.Teacher,{onDelete:'CASCADE',hooks:true});
 
 module.exports = db;
