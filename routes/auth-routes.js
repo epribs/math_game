@@ -15,7 +15,7 @@ passport.use('user',new LocalStrategy(
 
   function(username, password, done) {
 
-    db.User.findOne({ where: {username: username} }).then(function(dbUser) {
+    db.Users.findOne({ where: {username: username} }).then(function(dbUser) {
        if(dbUser==null || dbUser=='undefined'){
          return done(null, false, { message: 'Incorrect username.' });      
        }else{
@@ -68,9 +68,9 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-   db.User.findById(id).then(function(user) {
+   db.Users.findById(id).then(function(user) {
       if (user) return done(null, user);
-      db.User.findById(id).then(function(user) {
+      db.Users.findById(id).then(function(user) {
         if (user) return done(null, user);
       });
     })

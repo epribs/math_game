@@ -19,13 +19,13 @@ app.get("/admin", function(req, res) {
 });
 
 //===============================================================
-//User Routes
+//Users Routes
 //===============================================================
 // get all teachers
 
 app.get("/admin/api/user", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.User.findAll({}).then(function(dbUser) {
+    db.Users.findAll({}).then(function(dbUser) {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbUser);
     }).catch(function(err){
@@ -60,7 +60,7 @@ app.post("/admin/api/teachers", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //create teacher in db
-      db.User.create({
+      db.Users.create({
       username:req.body.username,
       password:req.body.password,
       role:req.body.role      
@@ -89,7 +89,7 @@ app.put("/admin/api/teachers/:id", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //update the student object
-      db.User.update({
+      db.Users.update({
       username: req.body.username,
       password:req.body.password,
       role:req.body.role      
@@ -268,7 +268,7 @@ app.post("/admin/api/students", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //create teacher in db
-      db.User.create({
+      db.Users.create({
       username:req.body.username,
       password:req.body.password,
       role:req.body.role      
@@ -298,7 +298,7 @@ app.put("/admin/api/students/:id", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //update the student object
-      db.User.update({
+      db.Users.update({
       username: req.body.username,
       password:req.body.password,
       role:req.body.role      
