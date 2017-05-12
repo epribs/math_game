@@ -36,7 +36,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-app.use(cookieParser());  
+app.use(cookieParser());
+app.use(express.favicon()); 
 
 // Static directory
 app.use(express.static(path.join(__dirname,"public")));
