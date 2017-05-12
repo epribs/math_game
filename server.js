@@ -38,6 +38,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(cookieParser());  
 
+
 // Static directory
 app.use(express.static(path.join(__dirname,"public")));
 
@@ -107,6 +108,10 @@ require("./routes/login-routes.js")(app);
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync({force:true}).then(function() {
   app.listen(PORT, function() {
+
+    // db.Student.create({
+    //   name:"Eric"
+    // }).then(function(x) {console.log(x)})
     console.log("App listening on PORT " + PORT);
   });
 });

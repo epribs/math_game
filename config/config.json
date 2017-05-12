@@ -9,15 +9,13 @@
   "test": {
     "username": "root",
     "password": "kuttu040109",
+
     "database": "mathgame",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "kuttu040109",
-    "database": "mathgame",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+  "use_env_variable": "DATABASE_URL"
   }
 }
