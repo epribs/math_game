@@ -56,6 +56,12 @@ body{
   top:-15px;
   left:600px;
 }
+
+#logoutButton{
+  position: absolute;
+  top:130px;
+  left:10px;
+}
 /*======================fix for the sticty footer===================*/
 .container:after{
     display: block;
@@ -258,4 +264,24 @@ body{
 
     justify-content: center;
     align-items: center;
+}
+
+#maskGameOver{
+    position: fixed;
+    z-index: 15;
+    top: 0;
+    left: 0;
+
+    display: none;
+    overflow: auto;
+
+    width: 100% ;
+    min-height: 100%;
+
+    background-color: #8080ff;
+}
+#endmessageBox{
+  color: white;
+  font-size: 50px;
+  text-align: center;
 }

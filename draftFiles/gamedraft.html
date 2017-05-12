@@ -15,6 +15,7 @@
 		<div id="nameContainer">
 				<h1 id="ArithmetricksName">	Arithme-tricks</h1>
 				<img src="magicianSmall.png" alt="Magician Child" id="magician">
+				<a href="/logout"><button type="button" name="button" id="logoutButton">Logout</button></a>
 		</div>
 
 		<div id="timerContainer">
@@ -81,6 +82,7 @@
 		 			<div id="nameContainer">
 		 				<h1 id="ArithmetricksName">	Arithme-tricks</h1>
 						<img src="magicianSmall.png" alt="Magician Child" id="magician">
+						<a href="/logout"><button type="button" name="button" id="logoutButton">Logout</button></a>
 		 			</div>
 			</div>
 
@@ -95,6 +97,30 @@
 			</footer>
 	</div>
 </div>
+<!-- MASK SECTION TO INICIATE THE GAME -->
+<div id="maskGameOver">
+	<div id="moduleGameOver">
+			<div id=headerBar>
+		 			<div id="nameContainer">
+		 				<h1 id="ArithmetricksName">	Arithme-tricks</h1>
+						<img src="magicianSmall.png" alt="Magician Child" id="magician">
+						<a href="/logout"><button type="button" name="button" id="logoutButton">Logout</button></a>
+		 			</div>
+			</div>
+
+<div id="endmessageBox">
+		<h1>GAME OVER</h1>
+		<h1>Good Job!!!!!!</h1>
+
+</div>
+
+
+			<footer class="siteFooter">
+				<p>Aritmetirks</p>
+			</footer>
+	</div>
+</div>
+
 
 
 </body>
@@ -126,9 +152,9 @@ function hideMask(){
 }
 
 function displayProblem(){
-	firstNumber = Math.floor(Math.random()*11);
+	firstNumber = Math.floor(Math.random()*10);
 	secondNumber = Math.floor(Math.random()*11);
-	$("#firstNumber").html(firstNumber);
+	$("#firstNumber").html("&nbsp;&nbsp;" + firstNumber);
 	$("#secondNumber").html(secondNumber);
 	problemId ++;
 	console.log("check:" + problemId);
@@ -148,12 +174,17 @@ function stopTimerUp(){
 	clearTimeout(oneMinute);
 }
 
+function showMaskGameOver(){
+	$("#maskGameOver").css("display", "block");
+}
+
 function gameOver(){
-	$("body").html("GAME OVER");
+	// $("body").html("GAME OVER");
 	console.log("game over");
 	finalResult.rightAnswers = corretcAnsw;
 	finalResult.wrongAnswers = wrongAnsw;
 	console.log(finalResult);
+	showMaskGameOver();
 }
 
 var countDown = setInterval(displayCountdown, 1000);
