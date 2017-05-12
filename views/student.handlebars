@@ -1,11 +1,13 @@
-  <!-- <h4> WELCOME STUaDENT {{user.username}} </h4> -->
+  <!-- <h4> Hi, {{user.username}} </h4> -->
   <!-- ========== ///// THE PURPLE HEADER OF THE PAGE ///// ============ -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 
 	<div id=headerBar>
 		<div id="nameContainer">
 				<h1 id="ArithmetricksName">	Arithme-tricks</h1>
-				<img src="magicianSmall.png" alt="Magician Child" id="magician">
-                <a href="/logout"><button type="button" name="button" id="logoutButton">Logout</button></a>
+				<img src="/images/magicianSmall.png" alt="Magician Child" id="magician">
+				<a href="/logout"><button type="button" name="button" id="logoutButton">Logout</button></a>
 		</div>
 
 		<div id="timerContainer">   
@@ -75,6 +77,8 @@
                         <a href="/logout"><button type="button" name="button" id="logoutButton">Logout</button></a>
 		 			</div>
 			</div>
+			<h4>  Welcome {{user.username}},click on START to begin your test! </h4>
+			<div class="hidden" id="userid">{{user.id}}</div>
 
 			<div id="roundButtonContainer">
 				<div id="startlabelBox">

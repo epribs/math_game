@@ -1,44 +1,25 @@
-// Dependencies
-var db = require("../models");
-
 //
-var getStudentId = function(){
-    var studentid = 0;
-
-    if(req.user == null || req.user=='undefined'){
-
-    }else{
-       var userid = req.user.id;
-       db.Student.findOne({
-          where: {UserId: req.user.UserId}
-   }).then(function(student){
-       studentid = student.id;
-   }).catch(function(err)){
-       console.log(err.stack);
-   }
-   return studentid;
-   }
+ function getStudentObject(userid,gameover){
+  $.get("/admin/api/students/"+userid,function(data){
+     console.log(data);
+     gameover(data);
+  });
 };
 
-//get classroom id
+// //get classroom id
 
-var getClassroomId =function(){
-    var classroomid = 0;
+// function getClassroomId(userid){
+//     $.get("/admin/api/students/"+userid,function(data){
+//      console.log(data);
+//      return data.ClassroomId;
 
-    if(req.user == null || req.user=='undefined'){
+//   });
+// };
 
-    }else{
-       var userid = req.user.id;
-       db.Student.findOne({
-          where: {UserId: req.user.UserId}
-   }).then(function(student){
-       ClassroomId = student.ClassroomId;
-   }).catch(function(err)){
-       console.log(err.stack);
-   }
-   return ClassroomId;
-   }
+function logmeout(){
+    console.log("I am in logout function");
+     $.get("/logout", function(data, status){
+        console.log("\nStatus: " + status);
+        window.location.reload();
+    });
 };
-
-module.exports = {"getStudentId":getStudentId,
-                  "getClassroomId": getClassroomId }

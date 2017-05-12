@@ -252,7 +252,7 @@ app.delete("/admin/api/classrooms/:id", function(req, res) {
 // get all students
 
 app.get("/admin/api/students", function(req, res) {
-    // findAll returns all entries for a table when used with no options
+      // findAll returns all entries for a table when used with no options
     db.Student.findAll({}).then(function(dbStudent) {
       // We have access to the todos as an argument inside of the callback function
       res.json(dbStudent);
@@ -260,7 +260,25 @@ app.get("/admin/api/students", function(req, res) {
       res.status(500);
       res.json({"ERROR":err.stack});
     });
+    
 });
+
+app.get("/admin/api/students/:userid", function(req, res) {
+
+        var userid = req.params.userid;
+
+        db.Student.findOne({
+              where: {UserId: userid}
+        }).then(function(dbstudent){
+        //    studentid = student.id;
+            res.json(dbstudent);
+        }).catch(function(err){
+          console.log(err.stack);
+        });
+    
+});
+
+  
 
 // add a student
 app.post("/admin/api/students", function(req, res) {
