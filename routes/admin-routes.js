@@ -10,7 +10,7 @@
 var db = require("../models");
 var bcrypt = require("bcryptjs");
 // =============================================================
-// Admin Routes 
+// Admin Routes
 // =============================================================
 module.exports = function(app) {
 
@@ -23,11 +23,11 @@ app.get("/admin", function(req, res) {
 //===============================================================
 // get all teachers
 
-app.get("/admin/api/user", function(req, res) {
+app.get("/admin/api/users", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.User.findAll({}).then(function(dbUser) {
+    db.Users.findAll({}).then(function(dbUsers) {
       // We have access to the todos as an argument inside of the callback function
-      res.json(dbUser);
+      res.json(dbUsers);
     }).catch(function(err){
       res.status(500);
       res.json({"ERROR":err.stack});
@@ -60,16 +60,16 @@ app.post("/admin/api/teachers", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //create teacher in db
-      db.User.create({
+      db.Users.create({
       username:req.body.username,
       password:req.body.password,
-      role:req.body.role      
+      role:req.body.role
       }).then(function(dbUser) {
         // We have access to the new user record as an argument inside of the callback function
-        //res.json(dbUser);
+        //res.json(dbUsers);
         db.Teacher.create({
         name: req.body.name,
-        UserId : dbUser.id
+        UserId : dbUsers.id
         }).then(function(dbTeacher){
          res.json(dbTeacher);
         });
@@ -79,7 +79,7 @@ app.post("/admin/api/teachers", function(req, res) {
       });
       });
   });
-   
+
 });
 
 //update a teacher
@@ -89,20 +89,20 @@ app.put("/admin/api/teachers/:id", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //update the student object
-      db.User.update({
+      db.Users.update({
       username: req.body.username,
       password:req.body.password,
-      role:req.body.role      
+      role:req.body.role
         }, {
         where: {
             id: req.params.id
         }
-        }).then(function(dbUser) {
-        res.json(dbUser);
-        var userid = dbUser.id;
+      }).then(function(dbUsers) {
+        res.json(dbUsers);
+        var usersid = dbUsers.id;
         db.Teacher.update({
            name: req.body.name,
-           UserId : userid
+           UsersId : usersid
         },{ where: {
             id: req.params.id
         }
@@ -115,7 +115,7 @@ app.put("/admin/api/teachers/:id", function(req, res) {
 
       });//bcrypt.hash ends
   }); //bcrypt.gensalt ends
-  
+
 });
 
 });//update teacher ends
@@ -268,17 +268,17 @@ app.post("/admin/api/students", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //create teacher in db
-      db.User.create({
+      db.Users.create({
       username:req.body.username,
       password:req.body.password,
-      role:req.body.role      
-      }).then(function(dbUser) {
+      role:req.body.role
+    }).then(function(dbUsers) {
         // We have access to the new user record as an argument inside of the callback function
-        //res.json(dbUser);
+        //res.json(dbUsers);
         db.Student.create({
         name: req.body.name,
         ClassroomId : req.body.ClassroomId,
-        UserId : dbUser.id
+        UsersId : dbUsers.id
         }).then(function(dbStudent){
          res.json(dbStudent);
         });
@@ -288,7 +288,7 @@ app.post("/admin/api/students", function(req, res) {
       });
       });
   });
-   
+
 });
 
 
@@ -298,17 +298,17 @@ app.put("/admin/api/students/:id", function(req, res) {
       bcrypt.hash(req.body.password, salt, function(err, hash) {
       req.body.password = hash;
       //update the student object
-      db.User.update({
+      db.Users.update({
       username: req.body.username,
       password:req.body.password,
-      role:req.body.role      
+      role:req.body.role
         }, {
         where: {
             id: req.params.id
         }
-        }).then(function(dbUser) {
-        res.json(dbUser);
-        var userid = dbUser.id;
+      }).then(function(dbUsers) {
+        res.json(dbUsers);
+        var usersid = dbUsers.id;
         db.Student.update({
            name: req.body.name,
            ClassroomId : req.body.ClassroomId,
@@ -325,7 +325,7 @@ app.put("/admin/api/students/:id", function(req, res) {
 
       });//bcrypt.hash ends
   }); //bcrypt.gensalt ends
-  
+
 });
 
 });//update student ends

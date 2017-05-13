@@ -4,16 +4,16 @@
     "password": "",
     "database": "mathgame",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "prostgres",
+    "use_env_variable": "DATABASE_URL"
   },
   "test": {
     "username": "root",
     "password": "",
     "database": "mathgame",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "prostgres"
   },
   "production": {
-  "use_env_variable": "DATABASE_URL"
   }
 }
