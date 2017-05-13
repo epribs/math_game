@@ -19,6 +19,15 @@ var sequelize = new Sequelize(mysql://yw1b94efoh3ell4m:u7genq1yn2zazfn1@hngomrlb
 			ssl:true});
 }
 
+User.bulkCreate([
+  { username: 'testteacher', password: "test123", role: "teacher"},
+  { username: 'teststudent', password: "test123", role: "student"}
+]).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
+  return User.findAll();
+}).then(function(users) {
+  console.log(users) // ... in order to get the array of user objects
+})
+
 fs
   .readdirSync(__dirname)
   .filter(function(file) {
