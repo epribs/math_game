@@ -8,25 +8,12 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
-// if (config.use_env_variable) {
-//   var sequelize = new Sequelize(process.env[config.use_env_variable]);
-// } else {
-//   var sequelize = new Sequelize(config.database, config.username, config.password, config);
-// }
+if (config.use_env_variable) {
+  var sequelize = new Sequelize(process.env[config.use_env_variable]);
+} else {
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
-var sequelize = new Sequelize("mysql://yw1b94efoh3ell4m:u7genq1yn2zazfn1@hngomrlb3vfq3jcr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/kipz2uz5u299o9ot",{
-		dialectOptions:{
-			ssl:true}
-  });
-
-db.user.bulkCreate([
-  { username: 'testteacher', password: "test123", role: "teacher"},
-  { username: 'teststudent', password: "test123", role: "student"}
-]).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
-  return User.findAll();
-}).then(function(users) {
-  console.log(users) // ... in order to get the array of user objects
-})
 
 fs
   .readdirSync(__dirname)
