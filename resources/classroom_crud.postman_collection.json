@@ -98,7 +98,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"classnumber\":101,\n\"grade\":1,\n\"TeacherId\":null\n}"
+					"raw": "{\n\"classnumber\":301,\n\"grade\":1,\n\"TeacherId\":3\n}"
 				},
 				"description": ""
 			},

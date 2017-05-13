@@ -104,7 +104,7 @@ require("./routes/admin-routes.js")(app);
 require("./routes/auth-routes.js")(app);
 require("./routes/login-routes.js")(app);
 require("./routes/test-routes.js")(app);
-
+require("./routes/leaderboard-routes.js")(app);
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync({force:false}).then(function() {
   app.listen(PORT, function() {

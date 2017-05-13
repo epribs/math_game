@@ -21,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"name\":\"Mrs John\",\n\"username\":\"john123\",\n\"password\":\"tester123\",\n\"role\":\"teacher\"\n}"
+					"raw": "{\n\"name\":\"Mrs Gupta\",\n\"username\":\"gupta123\",\n\"password\":\"tester123\",\n\"role\":\"teacher\"\n}"
 				},
 				"description": ""
 			},
@@ -63,6 +63,17 @@
 					"mode": "raw",
 					"raw": "{\n\"name\":\"New Name\",\n\"username\":\"newUsername\",\n\"password\":\"newPassword\",\n\"role\":\"student\"\n}"
 				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"url": "http://localhost:3000/admin/api/user",
+				"method": "GET",
+				"header": [],
+				"body": {},
 				"description": ""
 			},
 			"response": []

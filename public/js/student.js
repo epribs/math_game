@@ -37,9 +37,17 @@ function displayProblem(){
 // 	setTimeout(gameOver,60*1000);
 // }
 var oneMinute;
+//timerup
 function timerUp(){
-	oneMinute =setTimeout(gameOver, 60 * 1000);
+	// call back to gamover 
+	var userid = $("#userid").html();
+    console.log(userid);
+	//getStudentObject(userid,gameOver);
+	oneMinute =setTimeout(function() {
+    getStudentObject(userid,gameOver);
+}, 60 * 1000);
 }
+//stop timer
 function stopTimerUp(){
 	clearTimeout(oneMinute);
 }
@@ -53,7 +61,7 @@ function gameOver(studentObj){
 	//console.log(userid);
 	console.log("game over");
 	//console.log("user sesssion object "+ user);
-	finalResult.name="Weekly Test"
+	finalResult.name="Addition"
 	finalResult.correctQuestions = corretcAnsw;
 	finalResult.wrongQuestions = wrongAnsw;
 	finalResult.totalQuestions = 20;

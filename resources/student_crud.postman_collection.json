@@ -21,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"name\":\"Ved Iyer\",\n\"username\":\"ved123\",\n\"password\":\"tester123\",\n\"role\":\"student\",\n\"ClassroomId\":null\n\n}"
+					"raw": "{\n\"name\":\"Kenny Sebastian\",\n\"username\":\"kenny123\",\n\"password\":\"tester123\",\n\"role\":\"student\",\n\"ClassroomId\":101\n\n}"
 				},
 				"description": ""
 			},

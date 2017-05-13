@@ -2,18 +2,20 @@
  	<div id=headerBar>
 		 	<div id="nameContainer">
 		 			<h1 id="ArithmetricksName">	Arithme-tricks</h1>
-					<img src="magicianSmall.png" alt="Magician Child" id="magician">
+					<img src="/images/magicianSmall.png" alt="Magician Child" id="magician">
                     <a href="/logout"><button type="button" name="button" id="logoutButton">Logout</button></a>
+										
 		 	</div>
 
  	</div>
-
+  <h4>  Welcome {{user.username}}! </h4>
+	<div class="hidden" id="teacherid">{{user.id}}</div>
 	<button class="accordion" id="first"> Class performace </button>
 	  <div class="panelB">
 			<div class="tableContainer">
 				<div class="panel panel-default panel-primary">
 					<div class="panel-heading">Classroom Report</div>
-			   	<table class="table">
+			   	<table class="table" id="classleaderbrd">
 			      <tr>
 			        <th>Student</th>
 			        <th>Operation</th>
@@ -21,7 +23,7 @@
 							<th>Wrong Answers </th>
 			      </tr>
 
-			      <tr>
+			      {{!--<tr>
 			        <td> John S.</td>
 			        <td> addition</td>
 			        <td> 18 out of 20</td>
@@ -47,7 +49,7 @@
 			        <td>subtraction</td>
 			        <td>13 out of 20</td>
 							<td>4</td>
-			      </tr>
+			      </tr>--}}
 			    </table>
 				</div>
 			</div>
@@ -58,7 +60,7 @@
 			<div class="tableContainer">
 				<div class="panel panel-default panel-primary">
 					<div class="panel-heading ">First Grade Top 3 scores of the week</div>
-			    <table class="table">
+			    <table class="table" id="gradeleaderboard">
 			      <tr>
 							<th>Rank</th>
 							<th>Student</th>
@@ -66,7 +68,7 @@
 			        <th>Last test </th>
 			      </tr>
 
-			      <tr>
+			      {{!--<tr>
 							<td>1</td>
 			        <td> Peter Pizza</td>
 			        <td>addition</td>
@@ -84,7 +86,7 @@
 			        <td>Max Jonnes</td>
 			        <td>subtration</td>
 			        <td>out of 20</td>
-			      </tr>
+			      </tr>--}}
 			    </table>
 				</div>
 			</div>
@@ -97,28 +99,45 @@
 				<div class="tableContainer">
 					<h1> Add Student</h1>
 
-		        <form class="form-group" action="" method="post">
+		        <form class="form-group" action="/admin/api/students" method="POST">
 								<div class="form-group">
 									<label for="Name"> Name: </label>
-				          <input type="text" class="form-control" name="" value="">
+				          <input type="text" class="form-control" name="name" value="">
 								</div>
 
 								<div class="form-group">
 				        	<label for="Classroom">Classroom: </label>
-									<input type="text" class="form-control" name="" value="">
+									<input type="text" class="form-control" name="ClassroomId" value="">
 								</div>
 								<div class="form-group">
-									 <label for="grade"> Grade:</label>
-									<input type="text" class="form-control" name="" value="">
+									<label for="role"> Role: </label>
+									<input type="role" class="form-control" name="role" value="">
+								</div>
+								<div class="form-group">
+									 <label for="grade"> Username:</label>
+									<input type="text" class="form-control" name="username" value="">
 								</div>
 								<div class="form-group">
 									<label for="password"> Password: </label>
-									<input type="text" class="form-control" name="" value="">
+									<input type="password" class="form-control" name="password" value="">
 								</div>
+
 								<button type="submit" class"btn btn-primary" name="button">Submit</button>
 		        </form>
 				</div>
 	    </div>
+			{{#if success_msg}}
+		  <div class="alert alert-success">{{success_msg}}</div>
+		{{/if}}
+
+		{{#if error_msg}}
+			<div class="alert alert-danger">{{error_msg}}</div>
+		{{/if}}
+
+		{{#if error}}
+			<div class="alert alert-danger">{{error}}</div>
+		{{/if}}
+    
 <!--  {{#if isTeacher}}
 <h4> WELCOME TEACHER {{user.username}} </h4>
  {{else}}

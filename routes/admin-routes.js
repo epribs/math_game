@@ -141,20 +141,32 @@ app.delete("/admin/api/teachers/:id", function(req, res) {
 
   });
 
-//get a single teacher view
-app.get("/admin/api/teachers/:id", function(req, res) {
+//get a single teacher view by UserId
+app.get("/admin/api/teachers/:userid", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.Teacher.findById(req.params.id).then(function(dbTeacher) {
-      // We have access to the todos as an argument inside of the callback function
-      if(dbTeacher==null || dbTeacher=='undefined')
-        res.status(404);
-      else
-        res.status(200);
-      res.json(dbTeacher);
-    }).catch(function(err){
-      res.status(500);
-      res.json({"ERROR":err.stack});
-    });
+    // db.Teacher.findById(req.params.id).then(function(dbTeacher) {
+    //   // We have access to the todos as an argument inside of the callback function
+    //   if(dbTeacher==null || dbTeacher=='undefined')
+    //     res.status(404);
+    //   else
+    //     res.status(200);
+    //   res.json(dbTeacher);
+    // }).catch(function(err){
+    //   res.status(500);
+    //   res.json({"ERROR":err.stack});
+    // });
+
+    var userid = req.params.userid;
+
+        db.Teacher.findOne({
+              where: {UserId: userid}
+        }).then(function(dbTeacher){
+        //    studentid = student.id;
+            res.json(dbTeacher);
+        }).catch(function(err){
+          console.log(err.stack);
+        });
+
 });
 
 // =============================================================
@@ -244,6 +256,25 @@ app.delete("/admin/api/classrooms/:id", function(req, res) {
     });
 });
 
+//Get classroom by teacher id
+
+app.get("/admin/api/classrooms/teacher/:teacherid", function(req, res) {
+    // findAll returns all entries for a table when used with no options
+     db.Classroom.findOne({
+        where: {TeacherId: req.params.teacherid}
+      }).then(function(dbClassroom){
+        if(dbClassroom==null || dbClassroom=='undefined')
+        res.status(404);
+      else
+        res.status(200);
+      res.json(dbClassroom);
+      }).catch(function(err){
+      res.status(500);
+      res.json({"ERROR":err.stack});
+    });
+}); 
+
+
 
 // =============================================================
 // Student Routes
@@ -263,6 +294,7 @@ app.get("/admin/api/students", function(req, res) {
     
 });
 
+//get student by userid
 app.get("/admin/api/students/:userid", function(req, res) {
 
         var userid = req.params.userid;
@@ -278,8 +310,24 @@ app.get("/admin/api/students/:userid", function(req, res) {
     
 });
 
-  
+//get student by student id
 
+app.get("/admin/api/students/studentid/:studentid", function(req, res) {
+
+        var studentid = req.params.studentid;
+        db.Student.findById(studentid).then(function(dbClassroom){
+      // We have access to the todos as an argument inside of the callback function
+          if(dbClassroom==null || dbClassroom=='undefined')
+            res.status(404);
+          else
+            res.status(200);
+          res.json(dbClassroom);
+        }).catch(function(err){
+          console.log(err.stack);
+        });
+    
+});
+  
 // add a student
 app.post("/admin/api/students", function(req, res) {
     bcrypt.genSalt(10, function(err, salt) {
@@ -297,8 +345,13 @@ app.post("/admin/api/students", function(req, res) {
         name: req.body.name,
         ClassroomId : req.body.ClassroomId,
         UserId : dbUser.id
-        }).then(function(dbStudent){
-         res.json(dbStudent);
+      }).then(function(dbStudent){
+         req.flash("success_msg","student added successfully");
+         setTimeout(function () {
+               res.redirect('/user');
+          }, 3000);
+          
+         //res.json(dbStudent);
         });
       }).catch(function(err){
         res.status(500);
@@ -371,13 +424,14 @@ app.delete("/admin/api/students/:id", function(req, res) {
 
   //
   //get a single teacher view
-app.get("/admin/api/students/:id", function(req, res) {
-    // findAll returns all entries for a table when used with no options
-    db.Student.findById(req.params.id).then(function(dbStudent) {
-      // We have access to the todos as an argument inside of the callback function
-      if(dbStudent==null || dbStudent=='undefined')
+app.get("/admin/api/students/classroom/:classroomid", function(req, res) {
+    
+    db.Student.findAll({
+      where: {ClassroomId : req.params.classroomid}
+    }).then(function(dbStudent){
+       if(dbStudent==null || dbStudent=='undefined')
         res.status(404);
-      else
+       else
         res.status(200);
       res.json(dbStudent);
     }).catch(function(err){
@@ -388,4 +442,4 @@ app.get("/admin/api/students/:id", function(req, res) {
 
 
 
-}
+}//end of module.exports
