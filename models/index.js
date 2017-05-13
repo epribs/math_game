@@ -19,7 +19,7 @@ var sequelize = new Sequelize("mysql://yw1b94efoh3ell4m:u7genq1yn2zazfn1@hngomrl
 			ssl:true}
   });
 
-User.bulkCreate([
+db.user.bulkCreate([
   { username: 'testteacher', password: "test123", role: "teacher"},
   { username: 'teststudent', password: "test123", role: "student"}
 ]).then(function() { // Notice: There are no arguments here, as of right now you'll have to...
