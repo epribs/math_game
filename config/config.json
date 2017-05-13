@@ -1,19 +1,23 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "kuttu040109",
     "database": "mathgame",
     "host": "127.0.0.1",
-    "dialect": "prostgres",
-    "use_env_variable": "DATABASE_URL"
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "",
+    "password": "kuttu040109",
     "database": "mathgame",
     "host": "127.0.0.1",
-    "dialect": "prostgres"
+    "dialect": "mysql"
   },
   "production": {
+    "username": "root",
+    "password": "kuttu040109",
+    "database": "mathgame",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   }
 }
