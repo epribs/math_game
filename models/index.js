@@ -17,7 +17,7 @@ var db        = {};
 var sequelize = new Sequelize("mysql://yw1b94efoh3ell4m:u7genq1yn2zazfn1@hngomrlb3vfq3jcr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/kipz2uz5u299o9ot",{
 		dialectOptions:{
 			ssl:true}
-  );
+  });
 
 User.bulkCreate([
   { username: 'testteacher', password: "test123", role: "teacher"},
