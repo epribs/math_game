@@ -1,22 +1,22 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var Users = sequelize.define("Users",
+  var User = sequelize.define("User", 
   {
-    username:{
+    username:{ 
     type: DataTypes.STRING,
     allowNull: false,
       validate:{
         len:[4,50],
-        isAlphanumeric: true,
+        isAlphanumeric: true, 
         notEmpty:true,
         isUnique: function(value, next) {
-                  Users.find({
+                  User.find({
                     where: {username: value},
                     attributes: ['id']
-                  }).then(function(users) {
-                      if(users){
-                      console.log('username already in use!');
+                   }).then(function(user) {
+                      if(user){
+                      console.log('username already in use!'); 
                       return next('username already in use!');
                     }
                     console.log("username is available");
@@ -24,25 +24,25 @@ module.exports = function(sequelize, DataTypes) {
                     }).catch(function(error){
                       console.log(error);
                       return next(error);
-                    });
+                    });              
         }
       }
     },
-    password:{
+    password:{ 
     type: DataTypes.STRING,
     allowNull: false,
     validate:{
-         notEmpty:true
+         notEmpty:true       
       }
     },
-    role:{
+    role:{ 
     type: DataTypes.STRING,
     allowNull: false,
     validate:{
-         notEmpty:true
+         notEmpty:true       
       }
     }
-
+   
    },{
 
   // disable the modification of tablenames; By default, sequelize will automatically
@@ -53,5 +53,6 @@ module.exports = function(sequelize, DataTypes) {
   }
   );
 
-  return Users;
+  return User;
 };
+
