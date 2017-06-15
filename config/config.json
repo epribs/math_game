@@ -1,5 +1,6 @@
 {
-  "development": {
+  
+"development": {
     "username": "root",
     "password": "",
     "database": "mathgame",
